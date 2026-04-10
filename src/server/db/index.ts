@@ -1,0 +1,18 @@
+import { drizzle } from "drizzle-orm/postgres-js";
+import postgres from "postgres";
+
+import { env } from "~/env";
+// biome-ignore lint/performance/noNamespaceImport: "This avoids to import tables, etc from each "schema""
+import * as schema from "./schema";
+
+const globalForDb = globalThis as unknown as {
+  conn: postgres.Sql | undefined;
+};
+
+const conn = globalForDb.conn ?? postgres(env.POSTGRES_URL);
+if (env.NODE_ENV !== "production") {
+  globalForDb.conn = conn;
+}
+
+export const db = drizzle(conn, { schema });
+export type db = typeof db;
