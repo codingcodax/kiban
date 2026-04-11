@@ -1,4 +1,4 @@
-import { publicProcedure } from "../../trpc";
+import { publicProcedure } from '../../trpc';
 
 /**
  * Retrieves current session and user information (public access).
@@ -16,6 +16,6 @@ import { publicProcedure } from "../../trpc";
  * ```
  */
 export const getSession = publicProcedure.query(({ ctx }) => ({
-  session: ctx.session,
-  user: ctx.user,
+	session: ctx.session,
+	user: ctx.user,
 }));

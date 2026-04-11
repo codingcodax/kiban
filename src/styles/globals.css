@@ -1,13 +1,13 @@
-@import "tailwindcss";
-@import "tw-animate-css";
-@import "shadcn/tailwind.css";
+@import 'tailwindcss';
+@import 'tw-animate-css';
+@import 'shadcn/tailwind.css';
 
 @custom-variant dark (&:is(.dark *));
 
 @theme {
   --font-sans:
     var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif,
-    "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
 }
 
 @theme inline {
@@ -143,20 +143,20 @@
   }
 
   /* Firefox */
-  input[type="number"] {
+  input[type='number'] {
     -moz-appearance: textfield;
     appearance: textfield;
   }
 
-  div[aria-invalid="true"] input:focus {
+  div[aria-invalid='true'] input:focus {
     --tw-ring-color: var(--destructive);
   }
 
-  div[aria-invalid="true"] * {
+  div[aria-invalid='true'] * {
     border-color: var(--destructive);
   }
 
-  div[aria-invalid="true"] *:hover {
+  div[aria-invalid='true'] *:hover {
     border-color: var(--destructive);
   }
 }

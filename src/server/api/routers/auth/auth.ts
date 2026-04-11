@@ -1,7 +1,7 @@
-import type { TRPCRouterRecord } from "@trpc/server";
+import type { TRPCRouterRecord } from '@trpc/server';
 
-import { getSession } from "./get-session";
+import { getSession } from './get-session';
 
 export const authRouter = {
-  getSession,
+	getSession,
 } satisfies TRPCRouterRecord;
