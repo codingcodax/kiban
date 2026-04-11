@@ -13,6 +13,9 @@ export const env = createEnv({
       .enum(["development", "test", "production"])
       .default("development"),
     POSTGRES_URL: z.url(),
+    BETTER_AUTH_SECRET: z.string().min(1),
+    GOOGLE_CLIENT_ID: z.string().min(1),
+    GOOGLE_CLIENT_SECRET: z.string().min(1),
   },
 
   /**
@@ -31,6 +34,9 @@ export const env = createEnv({
   runtimeEnv: {
     NODE_ENV: process.env.NODE_ENV,
     POSTGRES_URL: process.env.POSTGRES_URL,
+    BETTER_AUTH_SECRET: process.env.BETTER_AUTH_SECRET,
+    GOOGLE_CLIENT_ID: process.env.GOOGLE_CLIENT_ID,
+    GOOGLE_CLIENT_SECRET: process.env.GOOGLE_CLIENT_SECRET,
   },
 
   /**
