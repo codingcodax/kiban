@@ -2,3 +2,17 @@
 bun = "latest"
 ni = "latest"
 node = "latest"
+
+[tasks.reset-db]
+description = "Stop and remove PostgreSQL container with volume"
+run = "bash reset-database.sh"
+
+[tasks.start-db]
+description = "Start PostgreSQL container with validation"
+depends = ["reset-db"]
+run = "bash start-database.sh"
+
+[tasks.setup]
+description = "Full reset and setup of PostgreSQL database, then run migrations"
+depends = ["start-db"]
+run = "nr db:migrate"
