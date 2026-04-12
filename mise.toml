@@ -1,7 +1,7 @@
 [tools]
-bun = "latest"
-ni = "latest"
-node = "latest"
+bun = "1.3.13"
+ni = "30.0.0"
+node = "25.9.0"
 
 [tasks.reset-db]
 description = "Stop and remove PostgreSQL container with volume"
