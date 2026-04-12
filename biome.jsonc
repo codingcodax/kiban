@@ -32,7 +32,8 @@
         "noShadow": "off"
       },
       "complexity": {
-        "noExcessiveCognitiveComplexity": "off"
+        "noExcessiveCognitiveComplexity": "off",
+        "useArrowFunction": "error"
       },
       "style": {
         "noNestedTernary": "off",
