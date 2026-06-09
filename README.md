@@ -1,6 +1,6 @@
-# Kiroku
+# Kiban
 
-A Next.js 16 full-stack app with type-safe APIs and authentication.
+A Next.js 16 full-stack app template with type-safe APIs and authentication.
 
 ![Version](https://img.shields.io/badge/version-0.0.1-blue) ![Package Manager](https://img.shields.io/badge/package_manager-bun-f5f5f5)
 
