@@ -2,7 +2,7 @@
 
 ## Project Overview
 
-Kiroku is a Next.js 16 (App Router) full-stack app using:
+Kiban is a Next.js 16 (App Router) full-stack app using:
 
 - **API**: tRPC 11.x with superjson
 - **Database**: PostgreSQL via Drizzle ORM
