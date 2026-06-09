@@ -115,4 +115,4 @@ Test infrastructure is not yet implemented. Recommended: Vitest for unit tests, 
 
 ## License
 
-Not specified.
+MIT

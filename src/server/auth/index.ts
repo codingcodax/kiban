@@ -7,7 +7,7 @@ import { getBaseUrl } from '~/lib/get-base-url';
 import { db } from '~/server/db';
 
 export const auth = betterAuth({
-	appName: 'Kiroku',
+	appName: 'Kiban',
 	baseURL: getBaseUrl(),
 
 	database: drizzleAdapter(db, {
