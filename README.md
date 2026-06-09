@@ -1,118 +1,114 @@
 # Kiban
 
-A Next.js 16 full-stack app template with type-safe APIs and authentication.
+A modern, full-stack application template built with Next.js, designed to provide a solid, secure, and scalable foundation for your projects.
 
-![Version](https://img.shields.io/badge/version-0.0.1-blue) ![Package Manager](https://img.shields.io/badge/package_manager-bun-f5f5f5)
+## Features
 
-## Technology Stack
+- **Full-stack Architecture**: Integrated frontend and backend with Next.js App Router
+- **Type-safe API**: End-to-end type safety using tRPC
+- **Database Management**: Drizzle ORM for robust database interactions and migrations
+- **Authentication**: Secure user management with Better Auth
+- **Modern Styling**: Tailwind CSS v4 and shadcn/ui for beautiful, accessible components
+- **Testing Suite**: Integrated Vitest for unit testing and Playwright for E2E testing
+- **CI/CD Ready**: Optimized for deployment on Vercel
 
-- **Framework**: Next.js 16.1.7 (App Router)
-- **API**: tRPC 11.x with superjson
-- **Database**: PostgreSQL via Drizzle ORM 0.45.2
-- **Auth**: Better Auth 1.6.x (Google OAuth + email/password)
-- **State**: TanStack React Query 5.x
-- **Styling**: Tailwind CSS 4.x with shadcn/ui
-- **Validation**: Zod 4.x
-- **Language**: TypeScript 5.9.3
-- **Package Manager**: Bun
+## Tech Stack
 
-## Architecture
-
-```
-┌─────────────────────────────────────────────────────────────┐
-│                      Next.js App Router                     │
-│  ┌─────────────┐  ┌─────────────┐  ┌─────────────────────┐ │
-│  │   Pages     │  │ API Routes  │  │ Server Components   │ │
-│  └─────────────┘  └─────────────┘  └─────────────────────┘ │
-└────────────────────────────┬────────────────────────────────┘
-                            │
-               ┌────────────┴────────────┐
-               │     tRPC (src/trpc/)     │
-               └────────────┬─────────────┘
-                            │
-┌───────────────────────────┴────────────────────────────────┐
-│                    API Layer (src/server/api/)             │
-└─────────────────────────────┬───────────────────────────────┘
-                              │
-┌─────────────────────────────┴───────────────────────────────┐
-│                   Data Layer (src/server/db/)                │
-└─────────────────────────────────────────────────────────────┘
-
-┌─────────────────────────────────────────────────────────────┐
-│              Auth Layer (src/server/auth/)                  │
-└─────────────────────────────────────────────────────────────┘
-```
+- **Framework**: [Next.js](https://nextjs.org) (App Router)
+- **Database**: [PostgreSQL](https://www.postgresql.org/) with [Drizzle ORM](https://orm.drizzle.team)
+- **API**: [tRPC](https://trpc.io) for type-safe API calls
+- **Styling**: [Tailwind CSS](https://tailwindcss.com) (v4) with [shadcn/ui](https://ui.shadcn.com) components
+- **Authentication**: [Better Auth](https://www.better-auth.com)
+- **Testing**: [Vitest](https://vitest.dev) & [Playwright](https://playwright.dev/)
+- **Deployment**: [Vercel](https://vercel.com)
 
 ## Getting Started
 
-```bash
-bun install
-./start-database.sh
-```
+### Prerequisites
 
-Configure `.env` with `POSTGRES_URL`, `BETTER_AUTH_SECRET`, and OAuth credentials.
+- [Node.js](https://nodejs.org) 18+
+- [Bun](https://bun.sh)
+- [Docker](https://www.docker.com) (for local PostgreSQL)
 
-```bash
-bun run dev        # Start dev server (turbopack, port 3000)
-bun run check      # Linting and type checks
-bun run fix        # Auto-fix lint issues
-bun run build      # Production build
-```
+### Installation
 
-Database commands:
+1. Clone the repository:
 
-```bash
-bun run db:generate   # Generate migrations
-bun run db:migrate    # Run migrations
-bun run db:push       # Push schema to DB
-bun run db:studio     # Open Drizzle Studio
-```
+   ```bash
+   git clone <repository-url>
+   cd kiban
+   ```
+
+2. Install dependencies:
+
+   ```bash
+   bun install
+   ```
+
+3. Set up environment variables:
+
+   ```bash
+   cp .env.example .env.local
+   ```
+
+   Fill in your `POSTGRES_URL` and other required credentials.
+
+4. Start the database service:
+
+   ```bash
+   ./start-database.sh
+   ```
+
+5. Set up the database schema:
+
+   ```bash
+   bun db:push
+   ```
+
+6. Start the development server:
+
+   ```bash
+   bun dev
+   ```
+
+## Development
+
+### Available Scripts
+
+- `bun dev` - Start development server
+- `bun build` - Build for production
+- `bun start` - Start production server
+- `bun check` - Lint and format code
+- `bun fix` - Auto-fix linting issues
+- `bun fix:unsafe` - Auto-fix unsafe code
+- `bun typecheck` - Run TypeScript type checking
+- `bun test` - Run all tests
+- `bun test:unit` - Run unit tests with Vitest
+- `bun test:e2e` - Run end-to-end tests with Playwright
+- `bun db:generate` - Generate Drizzle migrations
+- `bun db:push` - Push schema changes to database
+- `bun db:studio` - Open Drizzle Studio
 
 ## Project Structure
 
 ```
 src/
-├── app/              # Next.js pages (App Router)
-├── components/       # React components (ui/ for shadcn)
-├── server/
-│   ├── api/          # tRPC routers and procedures
-│   ├── auth/         # Better Auth configuration
-│   └── db/           # Drizzle schema and connection
-├── trpc/             # Client-side tRPC provider
-├── lib/              # Utilities
-└── hooks/            # Custom React hooks
+├── app/                 # Next.js app router pages
+│   ├── (app)/          # Main app routes
+│   ├── (auth)/         # Authentication routes
+│   └── api/            # API routes
+├── components/         # Reusable UI components
+├── lib/               # Utility functions
+├── server/            # Server-side code (tRPC, DB)
+└── types/             # TypeScript type definitions
 ```
-
-Path alias: `~/` maps to `./src/`
-
-## Key Features
-
-- Google OAuth + email/password authentication via Better Auth
-- Type-safe tRPC procedures with full type inference
-- PostgreSQL with Drizzle ORM (schema-first approach)
-- shadcn/ui components with dark mode support
-- Server-first patterns with Next.js App Router
-
-## Testing
-
-Test infrastructure is not yet implemented. Recommended: Vitest for unit tests, Playwright for E2E.
 
 ## Contributing
 
-1. Create a branch prefixed with `codingcodax/`
-2. Follow patterns in `docs/` folder
-3. Run `bun run check` before committing
-
-## Documentation
-
-| File | Purpose |
-|------|---------|
-| `docs/react.md` | Component patterns |
-| `docs/trpc.md` | tRPC procedures |
-| `docs/typescript.md` | TypeScript conventions |
-| `docs/drizzle.md` | Drizzle ORM patterns |
-| `docs/better-auth.md` | Auth patterns |
+1. Follow the coding guidelines in `AGENTS.md`
+2. Run `bun check` before committing
+3. Ensure tests pass with `bun test`
 
 ## License
 
-MIT
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
