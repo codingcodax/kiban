@@ -13,13 +13,13 @@ export const metadata: Metadata = {
 			? 'https://kiban.codingcodax.dev'
 			: 'http://localhost:3000'
 	),
-	title: 'Kiban - Sistema Moderno de Punto de Venta para Tu Negocio',
+	title: 'Kiban - Template Moderno para Aplicaciones Full-stack',
 	description:
-		'Kiban es un software de punto de venta diseñado especialmente para minoristas que buscan una gestión de ventas eficiente, confiable y segura. Ya sea que manejes múltiples empleados o una gran variedad de productos, Kiban brinda datos en tiempo real y automatiza tus flujos de trabajo.',
+		'Kiban es un template de aplicación full-stack moderno, diseñado para ofrecer una base sólida, segura y escalable. Utiliza Next.js, tRPC, Drizzle ORM y Better Auth para acelerar el desarrollo de tus proyectos.',
 	openGraph: {
-		title: 'Kiban - Sistema Moderno de Punto de Venta para Tu Negocio',
+		title: 'Kiban - Template Moderno para Aplicaciones Full-stack',
 		description:
-			'Kiban es un software de punto de venta diseñado especialmente para minoristas que buscan una gestión de ventas eficiente, confiable y segura..',
+			'Kiban es un template de aplicación full-stack moderno, diseñado para ofrecer una base sólida, segura y escalable. Utiliza Next.js, tRPC, Drizzle ORM y Better Auth para acelerar el desarrollo de tus proyectos.',
 		url: 'https://kiban.codingcodax.dev',
 		siteName: 'Kiban',
 		images: [
@@ -27,7 +27,7 @@ export const metadata: Metadata = {
 				url: '/og.png',
 				width: 1200,
 				height: 630,
-				alt: 'Kiban - Sistema Moderno de Punto de Venta para Tu Negocio',
+				alt: 'Kiban - Template Moderno para Aplicaciones Full-stack',
 				type: 'image/png',
 			},
 		],
