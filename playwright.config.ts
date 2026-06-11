@@ -1,4 +1,8 @@
 import { defineConfig, devices } from '@playwright/test';
+import dotenv from 'dotenv';
+import path from 'node:path';
+
+dotenv.config({ path: path.resolve(import.meta.dirname, '.env.test') });
 
 export default defineConfig({
 	testDir: './e2e',
@@ -21,11 +25,5 @@ export default defineConfig({
 		command: 'bun dev',
 		url: 'http://localhost:3000',
 		reuseExistingServer: !process.env.CI,
-		env: {
-			POSTGRES_URL: "postgresql://postgres:postgres@localhost:5432/kiban",
-			BETTER_AUTH_SECRET: "secret",
-			GOOGLE_CLIENT_ID: "id",
-			GOOGLE_CLIENT_SECRET: "secret",
-		}
 	},
 });
