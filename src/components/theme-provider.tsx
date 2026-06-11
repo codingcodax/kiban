@@ -6,20 +6,18 @@ import { useEffect } from 'react';
 const ThemeProvider = ({
 	children,
 	...props
-}: React.ComponentProps<typeof NextThemesProvider>) => {
-	return (
-		<NextThemesProvider
-			attribute='class'
-			defaultTheme='system'
-			disableTransitionOnChange
-			enableSystem
-			{...props}
-		>
-			<ThemeHotkey />
-			{children}
-		</NextThemesProvider>
-	);
-};
+}: React.ComponentProps<typeof NextThemesProvider>) => (
+	<NextThemesProvider
+		attribute='class'
+		defaultTheme='system'
+		disableTransitionOnChange
+		enableSystem
+		{...props}
+	>
+		<ThemeHotkey />
+		{children}
+	</NextThemesProvider>
+);
 
 const isTypingTarget = (target: EventTarget | null) => {
 	if (!(target instanceof HTMLElement)) {
