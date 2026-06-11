@@ -65,28 +65,24 @@ export const viewport: Viewport = {
 	userScalable: false,
 };
 
-export default function RootLayout({
-	children,
-}: Readonly<{
-	children: React.ReactNode;
-}>) {
-	return (
-		<html
-			className={cn(
-				'antialiased',
-				fontMono.variable,
-				'font-sans',
-				geist.variable
-			)}
-			data-scroll-behavior='smooth'
-			lang='en'
-			suppressHydrationWarning
-		>
-			<body>
-				<ThemeProvider attribute='class' defaultTheme='system' enableSystem>
-					<TRPCReactProvider>{children}</TRPCReactProvider>
-				</ThemeProvider>
-			</body>
-		</html>
-	);
-}
+const RootLayout = ({ children }: Readonly<{ children: React.ReactNode }>) => (
+	<html
+		className={cn(
+			'antialiased',
+			fontMono.variable,
+			'font-sans',
+			geist.variable
+		)}
+		data-scroll-behavior='smooth'
+		lang='en'
+		suppressHydrationWarning
+	>
+		<body>
+			<ThemeProvider attribute='class' defaultTheme='system' enableSystem>
+				<TRPCReactProvider>{children}</TRPCReactProvider>
+			</ThemeProvider>
+		</body>
+	</html>
+);
+
+export default RootLayout;
