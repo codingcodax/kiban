@@ -8,5 +8,5 @@ export default {
 	schema: './src/server/db/schema',
 	dialect: 'postgresql',
 	dbCredentials: { url: nonPoolingUrl },
-	tablesFilter: ['kiku_*'],
+	tablesFilter: ['kiban_*'],
 } satisfies Config;
