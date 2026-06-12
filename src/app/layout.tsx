@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 	metadataBase: new URL(
 		env.VERCEL_ENV === 'production'
 			? 'https://kiban.codingcodax.dev'
-			: 'http://localhost:3000'
+			: 'https://kiban.localhost'
 	),
 	title: 'Kiban - Template Moderno para Aplicaciones Full-stack',
 	description:
