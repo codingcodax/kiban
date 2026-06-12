@@ -2,6 +2,7 @@ import '~/styles/globals.css';
 
 import type { Metadata, Viewport } from 'next';
 import { Geist, Geist_Mono } from 'next/font/google';
+import Script from 'next/script';
 import { ThemeProvider } from '~/components/theme-provider';
 import { env } from '~/env';
 import { cn } from '~/lib/utils';
@@ -77,6 +78,21 @@ const RootLayout = ({ children }: Readonly<{ children: React.ReactNode }>) => (
 		lang='en'
 		suppressHydrationWarning
 	>
+		<head>
+			{env.NODE_ENV === 'development' && (
+				<Script
+					crossOrigin='anonymous'
+					src='//unpkg.com/react-grab/dist/index.global.js'
+					strategy='beforeInteractive'
+				/>
+			)}
+			{env.NODE_ENV === 'development' && (
+				<Script
+					src='//unpkg.com/@react-grab/mcp/dist/client.global.js'
+					strategy='lazyOnload'
+				/>
+			)}
+		</head>
 		<body>
 			<ThemeProvider attribute='class' defaultTheme='system' enableSystem>
 				<TRPCReactProvider>{children}</TRPCReactProvider>
