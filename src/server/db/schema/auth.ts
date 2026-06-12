@@ -33,7 +33,7 @@ export const account = createTable('account', {
 	scope: text('scope'),
 	password: text('password'),
 	createdAt: timestamp('created_at').notNull(),
-	updatedAt: timestamp('created_at').notNull(),
+	updatedAt: timestamp('updated_at').notNull(),
 });
 
 export const session = createTable('session', {
@@ -57,5 +57,5 @@ export const verification = createTable('verification_token', {
 	value: text('value').notNull(),
 	expiresAt: timestamp('expires_at').notNull(),
 	createdAt: timestamp('created_at').$defaultFn(() => new Date()),
-	updatedAt: timestamp('created_at').$defaultFn(() => new Date()),
+	updatedAt: timestamp('updated_at').$defaultFn(() => new Date()),
 });
