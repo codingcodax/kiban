@@ -6,6 +6,8 @@
 
 # testing
 /coverage
+/playwright-report
+/test-results
 
 # database
 /prisma/db.sqlite
@@ -23,6 +25,8 @@ next-env.d.ts
 # misc
 .DS_Store
 *.pem
+/.opencode/package-lock.json
+skills-lock.json
 
 # debug
 npm-debug.log*
@@ -40,7 +44,3 @@ pnpm-debug.log*
 
 # typescript
 *.tsbuildinfo
-
-# playwright
-/playwright-report
-/test-results
