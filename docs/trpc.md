@@ -8,8 +8,10 @@
 export const protectedProcedure = t.procedure
   .use(timingMiddleware)
   .use(({ ctx, next }) => {
-    if (!ctx.session) throw new TRPCError({ code: 'UNAUTHORIZED' });
-    return next({ ctx: { session: { ...ctx.session }, user: { ...ctx.user } } });
+    if (!ctx.session) throw new TRPCError({ code: "UNAUTHORIZED" });
+    return next({
+      ctx: { session: { ...ctx.session }, user: { ...ctx.user } },
+    });
   });
 ```
 
@@ -30,8 +32,13 @@ export const getSession = publicProcedure.query(({ ctx }) => ({
 
 ```typescript
 export const getAll = protectedProcedure
-  .input(GetEmployeesQuery)
-  .query(async ({ input, ctx }) => executeEmployeeQuery(ctx.db, input));
+  .input(ListQuesry)
+  .query(async ({ input, ctx }) => {
+    return ctx.db.query.user.findMany({
+      limit: input.limit,
+      offset: input.offset,
+    });
+  });
 ```
 
 ## Mutation Procedure
@@ -40,22 +47,22 @@ export const getAll = protectedProcedure
 
 ```typescript
 export const create = protectedProcedure
-  .input(CreateCustomer)
+  .input(CreateUser)
   .mutation(async ({ input, ctx }) => {
-    const [newCustomer] = await ctx.db.insert(customer).values(input).returning();
-    return newCustomer;
+    const [newUser] = await ctx.db.insert(user).values(input).returning();
+    return newUser;
   });
 ```
 
 ## Input Validation with Zod
 
 ```typescript
-export const CreateCustomer = z.object({
-  name: requiredString('Name'),
+export const CreateUser = z.object({
+  name: requiredString("Name"),
   email: Email.optional().or(z.null()),
 });
 
-export const UpdateCustomer = z.object({
+export const UpdateUser = z.object({
   id: EntityId,
   name: optionalString,
   email: Email.optional().or(z.null()),
@@ -65,11 +72,11 @@ export const UpdateCustomer = z.object({
 ## Query Schema with Pagination
 
 ```typescript
-export const GetCustomersQuery = z.object({
+export const ListQuesry = z.object({
   search: optionalString,
   page: z.number().int().min(1).default(1),
   perPage: z.number().int().min(1).max(100).default(10),
-  sort: z.array(CustomerSortConfig).default([{ id: 'name', desc: false }]),
+  sort: z.array(sortConfig).default([{ id: "name", desc: false }]),
 });
 ```
 
@@ -78,7 +85,7 @@ export const GetCustomersQuery = z.object({
 **When**: Handling errors. Common codes: BAD_REQUEST, NOT_FOUND, FORBIDDEN, UNAUTHORIZED.
 
 ```typescript
-throw new TRPCError({ code: 'NOT_FOUND', message: `Entity ${id} not found` });
+throw new TRPCError({ code: "NOT_FOUND", message: `Entity ${id} not found` });
 ```
 
 ## Database Transactions
@@ -87,7 +94,7 @@ throw new TRPCError({ code: 'NOT_FOUND', message: `Entity ${id} not found` });
 
 ```typescript
 await ctx.db.transaction(async (tx) => {
-  await tx.update(inventory).set({ quantity: newQuantity }).where(...);
-  await tx.insert(stockMovement).values({ ... });
+  await tx.update(user).set({ role: newRole }).where(eq(user.id, userId));
+  await tx.insert(auditLog).values({ action: "role_change", userId });
 });
 ```

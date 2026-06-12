@@ -26,7 +26,7 @@ A modern, full-stack application template built with Next.js, designed to provid
 
 ### Prerequisites
 
-- [Node.js](https://nodejs.org) 18+
+- [Node.js](https://nodejs.org) 22+
 - [Bun](https://bun.sh)
 - [Docker](https://www.docker.com) (for local PostgreSQL)
 
@@ -48,7 +48,7 @@ A modern, full-stack application template built with Next.js, designed to provid
 3. Set up environment variables:
 
    ```bash
-   cp .env.example .env.local
+   cp .env.example .env
    ```
 
    Fill in your `POSTGRES_URL` and other required credentials.
@@ -82,7 +82,6 @@ A modern, full-stack application template built with Next.js, designed to provid
 - `bun fix` - Auto-fix linting issues
 - `bun fix:unsafe` - Auto-fix unsafe code
 - `bun typecheck` - Run TypeScript type checking
-- `bun test` - Run all tests
 - `bun test:unit` - Run unit tests with Vitest
 - `bun test:e2e` - Run end-to-end tests with Playwright
 - `bun db:generate` - Generate Drizzle migrations
@@ -94,20 +93,26 @@ A modern, full-stack application template built with Next.js, designed to provid
 ```
 src/
 ├── app/                 # Next.js app router pages
-│   ├── (app)/          # Main app routes
-│   ├── (auth)/         # Authentication routes
-│   └── api/            # API routes
+│   ├── api/            # API routes (auth, tRPC)
+│   ├── layout.tsx      # Root layout
+│   └── page.tsx        # Home page
 ├── components/         # Reusable UI components
-├── lib/               # Utility functions
-├── server/            # Server-side code (tRPC, DB)
-└── types/             # TypeScript type definitions
+│   └── ui/             # shadcn/ui components
+├── hooks/              # Custom React hooks
+├── lib/                # Utility functions
+├── server/             # Server-side code (tRPC, DB, auth)
+│   ├── api/            # tRPC routers and context
+│   ├── auth/           # Better Auth configuration
+│   └── db/             # Drizzle schema and connection
+├── styles/             # Global CSS
+└── trpc/               # tRPC client and server helpers
 ```
 
 ## Contributing
 
 1. Follow the coding guidelines in `AGENTS.md`
-2. Run `bun check` before committing
-3. Ensure tests pass with `bun test`
+2. Run `bun check` and `bun typecheck` before committing
+3. Ensure tests pass with `bun test:unit` and `bun test:e2e`
 
 ## License
 

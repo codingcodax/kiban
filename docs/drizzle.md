@@ -14,8 +14,8 @@
 ## Type Inference
 
 ```typescript
-export type RefundTransaction = typeof refundTransaction.$inferSelect;
-export type NewRefundTransaction = typeof refundTransaction.$inferInsert;
+export type User = typeof user.$inferSelect;
+export type NewUser = typeof user.$inferInsert;
 ```
 
 ## Index Creation
@@ -54,11 +54,11 @@ updatedAt: timestamp('updated_at').$defaultFn(() => /* @__PURE__ */ new Date()).
 ## Insert with Returning
 
 ```typescript
-const [newCustomer] = await ctx.db.insert(customer).values({ name, email }).returning();
+const [newUser] = await ctx.db.insert(user).values({ name, email }).returning();
 ```
 
 ## Update with Partial Sets
 
 ```typescript
-await db.update(inventory).set({ ...(quantity && { quantity }), ...(lowStockThreshold && { lowStockThreshold }) }).where(eq(inventory.id, id));
+await db.update(user).set({ ...(name && { name }), ...(email && { email }) }).where(eq(user.id, id));
 ```

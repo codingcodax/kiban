@@ -15,23 +15,23 @@ export const Hero = () => (
 **When**: Component needs sub-components, context, or is feature-heavy.
 
 ```
-src/app/(app)/new-sale/_components/cart/
-├── cart.tsx           # Main component
-├── cart-content.tsx   # Sub-component
-└── context.tsx        # Context (if needed)
+src/components/dashboard/
+├── dashboard.tsx        # Main component
+├── dashboard-chart.tsx  # Sub-component
+└── context.tsx          # Context (if needed)
 ```
 
 **Import pattern** - Named imports from main component:
 
 ```typescript
-import { Cart, CartContent } from '../cart/cart';
+import { Dashboard, DashboardChart } from '../dashboard/dashboard';
 ```
 
 ## Props Pattern
 
 ```typescript
-type Props = { paymentMethods: PaymentMethod[] };
-export const Cart = ({ paymentMethods }: Props) => { /* ... */ };
+type Props = { items: string[] };
+export const ItemList = ({ items }: Props) => { /* ... */ };
 ```
 
 ## Props with Children

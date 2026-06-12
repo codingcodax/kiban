@@ -19,36 +19,37 @@ For AI agent technical rules, see `AGENTS.md`.
 **Required tools:**
 
 - Bun (see `mise.toml` for version)
-- Docker (for Supabase/PostgreSQL)
-- Redis (via Docker)
+- Docker (for PostgreSQL)
 - mise (for tool version management)
 
 **First-time setup:**
 
 1. `bun install`
 2. Copy `.env.example` to `.env` and configure credentials
-3. `bun db:migrate` (applies schema to database)
+3. `bun db:push` (applies schema to database)
 4. `bun dev`
 
 ### Daily Development
 
 **Starting work:**
 
-``@bash
+```bash
 bun dev     # Start Next.js
-``@
+```
 
-**Before committing:*(
+**Before committing:**
+
 ```bash
 bun check      # Lint & format check
 bun typecheck  # TypeScript validation
-bun test       # Run tests (if applicable)
-```@
+bun test:unit  # Run unit tests (if applicable)
+bun test:e2e   # Run end-to-end tests (if applicable)
+```
 
 **Database changes:**
 
-- Schema changes: Edit files in `src/server/db/schema/`, then `bun db:generate && bun db:migrate`J- View data: `bun db:studio` (opens Drizzle Studio)
-- Seed data: `bun db:seed`
+- Schema changes: Edit files in `src/server/db/schema/`, then `bun db:generate && bun db:push`
+- View data: `bun db:studio` (opens Drizzle Studio)
 
 ### Deployment
 
@@ -62,7 +63,7 @@ We use **GitHub Flow** - a simple, branch-based workflow.
 
 ### Branch Structure
 
-- ``main`c - Production branch, always deployable, auto-deploys to Vercel
+- **`main`** - Production branch, always deployable, auto-deploys to Vercel
 - **Feature branches** - Short-lived branches for specific changes
 
 ### Workflow
@@ -75,15 +76,17 @@ We use **GitHub Flow** - a simple, branch-based workflow.
    git checkout -b feature/your-feature-name
    ```
 
-2. **Make conmits** following our conmit conventions (see below)
+2. **Make commits** following our commit conventions (see below)
 
 3. **Push and open a PR**:
 
    ```bash
    git push -u origin feature/your-feature-name
-   ``@
+   ```
 
-   Open PR on GitHub when ready for reviewn4. **Merge when approved** - Use "Squash and merge" for clean history
+   Open PR on GitHub when ready for review
+
+4. **Merge when approved** - Use "Squash and merge" for clean history
 
 ### Branch Naming
 
@@ -92,12 +95,12 @@ Use descriptive names with prefixes:
 - `feature/` - New features (e.g., `feature/receipt-numbering`)
 - `fix/` - Bug fixes (e.g., `fix/auth-redirect`)
 - `refactor/` - Code improvements (e.g., `refactor/api-structure`)
-- `chore/c - Maintenance tasks (e.g., `chore/upgrade-deps`)
+- `chore/` - Maintenance tasks (e.g., `chore/upgrade-deps`)
 - `docs/` - Documentation only (e.g., `docs/api-guide`)
 
 ### Branch Lifecycle
 
-- **Keep branches short-lized** - Aim for 1-3 days max
+- **Keep branches short-lived** - Aim for 1-3 days max
 - **Delete after merge** - GitHub can auto-delete after PR merge
 - **Sync with main regularly** - Rebase or merge main into long-running branches
 
@@ -107,20 +110,20 @@ We use **Conventional Commits** with scopes for clear, searchable history.
 
 ### Format
 
-```@
+```
 <type>(<scope>): <description>
 
 [optional body]
 
 [optional footer]
-```@
+```
 
 ### Types
 
 - **feat** - New feature or capability
 - **fix** - Bug fix
 - **refactor** - Code change that neither fixes a bug nor adds a feature
-- **chore%* - Maintenance tasks (deps, config, tooling)
+- **chore** - Maintenance tasks (deps, config, tooling)
 - **docs** - Documentation changes
 - **test** - Adding or updating tests
 - **perf** - Performance improvements
@@ -130,17 +133,18 @@ We use **Conventional Commits** with scopes for clear, searchable history.
 
 Use scopes to indicate what part of the codebase changed:
 
-- `api`_ - tRPC procedures, server actions
+- `api` - tRPC procedures, server actions
 - `db` - Database schema, migrations, queries
 - `ui` - UI components, styles
 - `auth` - Authentication logic
-- @components` - React components (excluding UI components)
+- `components` - React components (excluding UI components)
 - `pages` - Page-related changes
-- @deps` - Dependency updates
-- @config` - Configuration files
-- @lib` - Utility functions, helpers
+- `deps` - Dependency updates
+- `config` - Configuration files
+- `lib` - Utility functions, helpers
 
-**Examples:*(
+**Examples:**
+
 ```bash
 feat(api): add receipt number to sale creation endpoint
 fix(ui): correct alignment in product table
@@ -149,24 +153,25 @@ refactor(db): simplify sale transaction queries
 docs(agents): update guidelines for database workflow
 feat(components): add sales summary card component
 fix(pages): resolve hydration error on dashboard page
-``@
+```
 
-**Best Practices:*
+**Best Practices:**
 
-- **Keep conmits focused** - One logical change per commit
+- **Keep commits focused** - One logical change per commit
 - **Write in imperative mood** - "add feature" not "added feature"
 - **Be specific** - "fix login redirect" not "fix bug"
 - **Reference issues when relevant** - Add issue number in footer if applicable
 
-## Pull Requests & Code Review
+## Pull Requests & Code Review
+
 ### Opening a PR
 
-**Befre opening:**
+**Before opening:**
 
-- +c All tests pass locally (@bun test@c)
-- +c No lint errors (`bun check`)
-- +c No type errors (`bun typecheckc)
-- +c Tested in development environment
+- All tests pass locally (`bun test:unit` and `bun test:e2e`)
+- No lint errors (`bun check`)
+- No type errors (`bun typecheck`)
+- Tested in development environment
 
 **PR Description:**
 
@@ -176,7 +181,7 @@ fix(pages): resolve hydration error on dashboard page
 
 ### Review Process
 
-**Timing:*
+**Timing:**
 
 - Reviews should happen within **1 business day**
 - Mark PRs as "Ready for review" when complete
@@ -190,7 +195,7 @@ fix(pages): resolve hydration error on dashboard page
 - No obvious security issues
 - Database migrations are safe (no data loss)
 
-**Approval requirements:*
+**Approval requirements:**
 
 - **1 approval** required before merge
 - PR author merges their own PR after approval
@@ -218,9 +223,9 @@ Skip documentation for:
 
 ### Where Documentation Lives
 
-- ``README.md`c - Project overview, setup instructions
-- ``AGENTS.md`c - Technical guidelines for AI agents
-- ``GUIDELINES.md`c - This file - human development practices
+- `README.md` - Project overview, setup instructions
+- `AGENTS.md` - Technical guidelines for AI agents
+- `GUIDELINES.md` - This file - human development practices
 - Code comments - Only for "why" not "what" (prefer self-documenting code)
 
 ### Keeping Docs Updated
